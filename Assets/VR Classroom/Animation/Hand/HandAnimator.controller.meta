@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 92c208c026838c0489a77c7db4965bbd
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 177816
+  packageName: VR Online Classroom Template
+  packageVersion: 1.33
+  assetPath: Assets/VR Classroom/Animation/Hand/HandAnimator.controller
+  uploadId: 551715

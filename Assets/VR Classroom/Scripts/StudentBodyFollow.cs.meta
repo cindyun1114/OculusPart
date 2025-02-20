@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 3cd72d67b009e044793015b1e909e4b5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 177816
+  packageName: VR Online Classroom Template
+  packageVersion: 1.33
+  assetPath: Assets/VR Classroom/Scripts/StudentBodyFollow.cs
+  uploadId: 551715

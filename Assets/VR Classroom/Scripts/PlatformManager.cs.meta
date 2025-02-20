@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: d372a7d6b9d097a44a07072d54bad4b8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 177816
+  packageName: VR Online Classroom Template
+  packageVersion: 1.33
+  assetPath: Assets/VR Classroom/Scripts/PlatformManager.cs
+  uploadId: 551715
