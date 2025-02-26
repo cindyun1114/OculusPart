@@ -1,0 +1,19 @@
+# ninja log v5
+1492	3741	7619238813437578	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	5314cf5c5426d149
+3887	4922	7619238825975264	C:/Users/user/crayon_VR_part/Library/PramData/AndroidApplicationController/Cache/com.unity.template.vr/gradle-project/unityLibrary/build/intermediates/cxx/Debug/66112743/obj/arm64-v8a/libgame.so	64fb52913dea88a1
+1	3750	7619238814195944	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	760a3905fae97f8b
+2281	3746	7619238813530420	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	c0b7c5194a3e6a13
+2512	3812	7619238814798250	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	1f8df86fb6578ff2
+579	3747	7619238813647229	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	aa7c5106dee400f
+902	3748	7619238813621302	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	c9e2b1a11da57bd4
+1251	3830	7619238815007055	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	e9f43690a833e131
+344	3887	7619238815537798	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	a5ff66c0ae93423
+1567	3127	7619265800310243	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	5314cf5c5426d149
+667	3129	7619265800444086	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	aa7c5106dee400f
+1347	3130	7619265800444086	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	c0b7c5194a3e6a13
+1846	3153	7619265800704605	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	1f8df86fb6578ff2
+1127	3255	7619265801760047	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	e9f43690a833e131
+387	3256	7619265801049328	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	760a3905fae97f8b
+904	3257	7619265800750350	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	c9e2b1a11da57bd4
+20	3301	7619265802226560	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	a5ff66c0ae93423
+3302	4263	7619265811532397	C:/Users/user/crayon_VR_part/Library/PramData/AndroidApplicationController/Cache/com.unity.template.vr/gradle-project/unityLibrary/build/intermediates/cxx/Debug/66112743/obj/arm64-v8a/libgame.so	64fb52913dea88a1
