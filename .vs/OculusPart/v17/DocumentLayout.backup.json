@@ -3,52 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\OculusPart\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|c:\\users\\user\\desktop\\oculuspart\\assets\\scripts\\vrlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\vrlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|c:\\users\\user\\desktop\\oculuspart\\assets\\scripts\\persistentdatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\persistentdatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|C:\\Users\\user\\Desktop\\OculusPart\\assets\\scripts\\layoutconponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\layoutconponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|C:\\Users\\user\\Desktop\\OculusPart\\assets\\scripts\\longpressbhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\longpressbhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user\\Desktop\\OculusPart\\Assets\\VR Classroom\\Scripts\\LoadSlides.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\VR Classroom\\Scripts\\LoadSlides.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user\\Desktop\\OculusPart\\Library\\PackageCache\\com.unity.xr.openxr\\Editor\\OpenXRProjectValidationRulesSetup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.xr.openxr\\Editor\\OpenXRProjectValidationRulesSetup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user\\Desktop\\OculusPart\\Assets\\PlatformManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\PlatformManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Photon\\PhotonVoice\\Demos\\DemoVoicePun\\Standard Assets\\CrossPlatformInput\\Scripts\\MobileControlRig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Photon\\PhotonVoice\\Demos\\DemoVoicePun\\Standard Assets\\CrossPlatformInput\\Scripts\\MobileControlRig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user\\Desktop\\OculusPart\\Assets\\VR Classroom\\Scripts\\HandAnimator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\VR Classroom\\Scripts\\HandAnimator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user\\Desktop\\OculusPart\\Assets\\VR Classroom\\Scripts\\PlatformManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\VR Classroom\\Scripts\\PlatformManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user\\Desktop\\OculusPart\\Assets\\VR Classroom\\Scripts\\XRGrabbablePunOffset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\VR Classroom\\Scripts\\XRGrabbablePunOffset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Photon\\PhotonUnityNetworking\\Code\\ServerSettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Photon\\PhotonUnityNetworking\\Code\\ServerSettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|c:\\users\\user\\desktop\\oculuspart\\assets\\scripts\\sitonchair.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\sitonchair.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,151 +14,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PersistentDataManager.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\PersistentDataManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\PersistentDataManager.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\PersistentDataManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\PersistentDataManager.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAwDgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T04:05:12.529Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "VRLogin.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\VRLogin.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\VRLogin.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\VRLogin.cs",
-              "RelativeToolTip": "Assets\\Scripts\\VRLogin.cs",
-              "ViewState": "AgIAAIsAAAAAAAAAAAAqwNkAAAABAAAAAAAAAA==",
+              "Title": "SitOnChair.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\SitOnChair.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\SitOnChair.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\SitOnChair.cs",
+              "RelativeToolTip": "Assets\\Scripts\\SitOnChair.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T15:43:48.532Z",
+              "WhenOpened": "2025-03-07T02:58:26.972Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LayoutConponent.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\LayoutConponent.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\LayoutConponent.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\LayoutConponent.cs",
-              "RelativeToolTip": "Assets\\Scripts\\LayoutConponent.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAwCEAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T12:43:26.299Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LongPressBHandler.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\LongPressBHandler.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\LongPressBHandler.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\LongPressBHandler.cs",
-              "RelativeToolTip": "Assets\\Scripts\\LongPressBHandler.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAwB0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-01T17:10:19.413Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LoadSlides.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\VR Classroom\\Scripts\\LoadSlides.cs",
-              "RelativeDocumentMoniker": "Assets\\VR Classroom\\Scripts\\LoadSlides.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\VR Classroom\\Scripts\\LoadSlides.cs",
-              "RelativeToolTip": "Assets\\VR Classroom\\Scripts\\LoadSlides.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T09:00:32.423Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MobileControlRig.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Photon\\PhotonVoice\\Demos\\DemoVoicePun\\Standard Assets\\CrossPlatformInput\\Scripts\\MobileControlRig.cs",
-              "RelativeDocumentMoniker": "Assets\\Photon\\PhotonVoice\\Demos\\DemoVoicePun\\Standard Assets\\CrossPlatformInput\\Scripts\\MobileControlRig.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Photon\\PhotonVoice\\Demos\\DemoVoicePun\\Standard Assets\\CrossPlatformInput\\Scripts\\MobileControlRig.cs",
-              "RelativeToolTip": "Assets\\Photon\\PhotonVoice\\Demos\\DemoVoicePun\\Standard Assets\\CrossPlatformInput\\Scripts\\MobileControlRig.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAwwCsAAAB3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T08:35:57.359Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "HandAnimator.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\VR Classroom\\Scripts\\HandAnimator.cs",
-              "RelativeDocumentMoniker": "Assets\\VR Classroom\\Scripts\\HandAnimator.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\VR Classroom\\Scripts\\HandAnimator.cs",
-              "RelativeToolTip": "Assets\\VR Classroom\\Scripts\\HandAnimator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T07:54:28.279Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PlatformManager.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\PlatformManager.cs",
-              "RelativeDocumentMoniker": "Assets\\PlatformManager.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\PlatformManager.cs",
-              "RelativeToolTip": "Assets\\PlatformManager.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T07:52:43.719Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "PlatformManager.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\VR Classroom\\Scripts\\PlatformManager.cs",
-              "RelativeDocumentMoniker": "Assets\\VR Classroom\\Scripts\\PlatformManager.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\VR Classroom\\Scripts\\PlatformManager.cs",
-              "RelativeToolTip": "Assets\\VR Classroom\\Scripts\\PlatformManager.cs",
-              "ViewState": "AgIAAMsAAAAAAAAAAAA+wNIAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T07:07:38.832Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "XRGrabbablePunOffset.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\VR Classroom\\Scripts\\XRGrabbablePunOffset.cs",
-              "RelativeDocumentMoniker": "Assets\\VR Classroom\\Scripts\\XRGrabbablePunOffset.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\VR Classroom\\Scripts\\XRGrabbablePunOffset.cs",
-              "RelativeToolTip": "Assets\\VR Classroom\\Scripts\\XRGrabbablePunOffset.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAADwvyEAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T16:43:28.16Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ServerSettings.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Photon\\PhotonUnityNetworking\\Code\\ServerSettings.cs",
-              "RelativeDocumentMoniker": "Assets\\Photon\\PhotonUnityNetworking\\Code\\ServerSettings.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Photon\\PhotonUnityNetworking\\Code\\ServerSettings.cs",
-              "RelativeToolTip": "Assets\\Photon\\PhotonUnityNetworking\\Code\\ServerSettings.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAABoAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T09:32:21.738Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "OpenXRProjectValidationRulesSetup.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Library\\PackageCache\\com.unity.xr.openxr\\Editor\\OpenXRProjectValidationRulesSetup.cs",
-              "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.xr.openxr\\Editor\\OpenXRProjectValidationRulesSetup.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Library\\PackageCache\\com.unity.xr.openxr\\Editor\\OpenXRProjectValidationRulesSetup.cs",
-              "RelativeToolTip": "Library\\PackageCache\\com.unity.xr.openxr\\Editor\\OpenXRProjectValidationRulesSetup.cs",
-              "ViewState": "AgIAAM8AAAAAAAAAAADwv9gAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T13:29:18.987Z"
             }
           ]
         }
