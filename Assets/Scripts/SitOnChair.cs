@@ -1,71 +1,115 @@
 using Unity.XR.CoreUtils;
 using UnityEngine;
-using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
+[RequireComponent(typeof(CharacterController))] // 確保有 CharacterController
 public class SitOnChair : MonoBehaviour
 {
-    public Transform chairTarget;  // 椅子的坐下位置
-    public Transform standTarget;  // 站起來的位置 (手動指定)
-    public GameObject xrRig;       // XR Rig (玩家)
-    public CharacterController characterController; // 控制玩家移動
-    public XROrigin xrRigComponent; // XR Rig 控制 (用於計算移動)
+    [Header("必要綁定")]
+    [Tooltip("拖入 XR Origin 物件")]
+    public XROrigin xrRig;
+    [Tooltip("拖入 Locomotion System 下的 Move 物件")]
+    public DynamicMoveProvider moveProvider;
+    [Tooltip("指定椅子坐下位置")]
+    public Transform chairTarget;
 
-    private bool isSeated = false; // 追蹤玩家是否坐下
-    private Vector2 moveInput; // 玩家移動輸入
+    [Header("進階設定")]
+    [Tooltip("起身時往前移動的距離")]
+    public float standForwardOffset = 0.3f;
+    [Tooltip("坐下時的碰撞體高度")]
+    public float seatedHeight = 1.0f;
+
+    private CharacterController characterController;
+    private bool isSeated = false;
+    private float originalHeight;     // 原始碰撞體高度
+    private Vector3 originalCenter;  // 原始碰撞體中心
 
     void Start()
     {
-        if (chairTarget == null || standTarget == null || xrRig == null) return;
+        characterController = GetComponent<CharacterController>();
 
-        // 嘗試獲取 XR Rig 組件
-        xrRigComponent = xrRig.GetComponent<XROrigin>();
+        // 儲存原始參數
+        originalHeight = characterController.height;
+        originalCenter = characterController.center;
+
+        // 自動綁定警告
+        if (xrRig == null || moveProvider == null || chairTarget == null)
+        {
+            Debug.LogError("重要元件未綁定！請檢查 Inspector 設定");
+        }
     }
 
     public void ToggleSeat()
     {
-        if (!isSeated)
-        {
-            SitDown();
-        }
-        else
-        {
-            StandUp();
-        }
+        if (!isSeated) SitDown();
+        else StandUp();
     }
 
     void SitDown()
     {
-        if (chairTarget == null || xrRig == null) return;
+        if (!ValidateComponents()) return;
 
-        // 移動 XR Rig 到椅子位置
-        xrRig.transform.position = chairTarget.position;
-        xrRig.transform.rotation = chairTarget.rotation;
+        // 禁用移動系統
+        moveProvider.enabled = false;
 
-        // 啟用 "禁用移動" 模式
+        // 調整碰撞體為坐下狀態
+        characterController.height = seatedHeight;
+        characterController.center = new Vector3(0, seatedHeight * 0.5f, 0); // 中心點置中
+
+        // 防止 Step Offset 錯誤
+        float maxStep = characterController.height + 2 * characterController.radius;
+        characterController.stepOffset = Mathf.Min(characterController.stepOffset, maxStep);
+
+        // 傳送到椅子位置（保持水平偏移）
+        Vector3 headOffset = xrRig.Camera.transform.position - xrRig.transform.position;
+        headOffset.y = 0;
+        xrRig.transform.position = chairTarget.position - headOffset;
+
         isSeated = true;
     }
 
     void StandUp()
     {
-        if (standTarget == null || xrRig == null) return;
+        if (!ValidateComponents()) return;
 
-        // **移動到手動指定的站立位置**
-        xrRig.transform.position = standTarget.position;
-        xrRig.transform.rotation = standTarget.rotation;
+        // 啟用移動系統
+        moveProvider.enabled = true;
+
+        // 恢復碰撞體參數
+        characterController.height = originalHeight;
+        characterController.center = originalCenter;
+
+        // 計算起身位置（椅子前方 + 頭部偏移）
+        Vector3 headOffset = xrRig.Camera.transform.position - xrRig.transform.position;
+        headOffset.y = 0;
+        Vector3 standPosition = chairTarget.position +
+                              (chairTarget.forward * standForwardOffset) +
+                              headOffset;
+
+        xrRig.transform.position = standPosition;
 
         isSeated = false;
     }
 
-    void Update()
+    // 元件驗證方法
+    private bool ValidateComponents()
     {
-        if (isSeated)
+        if (xrRig == null)
         {
-            // 禁止移動，將 `CharacterController` 的移動向量設為零
-            if (characterController != null)
-            {
-                characterController.Move(Vector3.zero);
-            }
+            Debug.LogError("XR Rig 未綁定");
+            return false;
         }
+        if (moveProvider == null)
+        {
+            Debug.LogError("Move Provider 未綁定");
+            return false;
+        }
+        if (chairTarget == null)
+        {
+            Debug.LogError("椅子位置未指定");
+            return false;
+        }
+        return true;
     }
 }
