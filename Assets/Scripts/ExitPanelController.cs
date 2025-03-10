@@ -6,7 +6,7 @@ using System.Text;
 
 public class ExitPanelController : MonoBehaviour
 {
-    public GameObject exitPanel;  // UI上面的ExitPanel物件
+    public GameObject exitPanel;  // UI上的ExitPanel物件
     public Button confirmButton;
     public Button cancelButton;
 
@@ -20,14 +20,20 @@ public class ExitPanelController : MonoBehaviour
         cancelButton.onClick.AddListener(() => exitPanel.SetActive(false));  // 取消就關掉面板
     }
 
+    /// <summary>
+    /// 顯示離開確認面板
+    /// </summary>
     public void ShowExitPanel()
     {
-        exitPanel.SetActive(true);  // 顯示離開確認面板
+        exitPanel.SetActive(true);
     }
 
+    /// <summary>
+    /// 確認離開並更新進度
+    /// </summary>
     void OnConfirmExit()
     {
-        StartCoroutine(UpdateCourseProgress());  // 先更新進度再跳LoginScene
+        StartCoroutine(UpdateCourseProgress());
     }
 
     IEnumerator UpdateCourseProgress()
@@ -36,25 +42,26 @@ public class ExitPanelController : MonoBehaviour
         int courseId = PersistentDataManager.Instance.CurrentCourseId;
         string currentStage = PersistentDataManager.Instance.CurrentStage;
 
+        int completedChapters = PersistentDataManager.Instance.CompletedChapters;
+        int totalChapters = PersistentDataManager.Instance.TotalChapters;
+
         float progressOneToOne = PersistentDataManager.Instance.OneToOneProgress;
         float progressClassroom = PersistentDataManager.Instance.ClassroomProgress;
 
-        float overallProgress = (progressOneToOne + progressClassroom) / 2f;
-
-        // 根據現在是在哪個場景，更新對應的progress
+        // ✔️ 進度改用ProgressCalculator計算
         if (currentStage == "one_to_one")
         {
-            progressOneToOne = CalculateCurrentStageProgress();
+            progressOneToOne = ProgressCalculator.CalculateOneToOneProgress(completedChapters, totalChapters);
         }
         else if (currentStage == "classroom")
         {
-            progressClassroom = CalculateCurrentStageProgress();
+            progressClassroom = ProgressCalculator.CalculateClassroomProgress(completedChapters, totalChapters);
         }
 
-        // 重新計算整體進度（50%+50%）
-        overallProgress = (progressOneToOne + progressClassroom) / 2f;
+        // ✔️ 整體進度
+        float overallProgress = ProgressCalculator.CalculateOverallProgress(progressOneToOne, progressClassroom);
 
-        // 組成上傳資料
+        // ✅ 組成上傳資料
         var progressData = new ProgressUpdateData
         {
             course_id = courseId,
@@ -85,23 +92,21 @@ public class ExitPanelController : MonoBehaviour
             }
         }
 
-        // 更新完後，回到LoginScene
+        // ✅ 更新完進度，回LoginScene
         UnityEngine.SceneManagement.SceneManager.LoadScene("LoginScene");
     }
 
     /// <summary>
-    /// 計算「當前這個場景」的進度 (這裡要根據你課程實際結構來)
+    /// 舊的進度計算保留但不再用（你可以刪掉）
     /// </summary>
+    [System.Obsolete]
     float CalculateCurrentStageProgress()
     {
         int completedChapters = PersistentDataManager.Instance.CompletedChapters;
         int totalChapters = PersistentDataManager.Instance.TotalChapters;
 
         if (totalChapters <= 0) return 0f;
-
         float progress = (completedChapters / (float)totalChapters) * 100f;
-
-        // 保險起見，最多顯示99.9%避免誤判
         return Mathf.Min(progress, 99.9f);
     }
 
