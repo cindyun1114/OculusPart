@@ -21,8 +21,8 @@ public class chatWithProfessor : MonoBehaviour
     private int CompletedChapters;
     private int TotalChapters;
 
-    string assistant_id = "";
-    string thread_id = "";
+    public string assistant_id = "";
+    public string thread_id = "";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,7 +38,7 @@ public class chatWithProfessor : MonoBehaviour
             ClassroomProgress = PersistentDataManager.Instance.ClassroomProgress;
             CompletedChapters = PersistentDataManager.Instance.CompletedChapters;
             TotalChapters = PersistentDataManager.Instance.TotalChapters;
-            
+
             StartCoroutine(getChatGPTIDs());
         }
         else
@@ -70,12 +70,12 @@ public class chatWithProfessor : MonoBehaviour
 
         using (UnityWebRequest request = new UnityWebRequest(apiFetchUrl, "POST"))
         {
-            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData); 
-            request.uploadHandler = new UploadHandlerRaw(bodyRaw); 
+            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
 
-           
+
             yield return request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.Success)
@@ -89,14 +89,14 @@ public class chatWithProfessor : MonoBehaviour
             }
             else
             {
-               blackBoardText.text = "Error: " + request.error;
+                blackBoardText.text = "Error: " + request.error;
             }
         }
     }
 
     public IEnumerator SendMessage()
     {
-        
+
         string jsonData = JsonUtility.ToJson(new messageRequest
         {
             action = "message",
@@ -105,25 +105,26 @@ public class chatWithProfessor : MonoBehaviour
             thread_id = thread_id
         });
         testInput.text = "";
-        
+
         using (UnityWebRequest request = new UnityWebRequest(apiChatUrl, "POST"))
         {
-            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData); 
-            request.uploadHandler = new UploadHandlerRaw(bodyRaw); 
+            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
 
-           
+
             yield return request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.Success)
             {
                 var response = JsonUtility.FromJson<messageResponse>(request.downloadHandler.text);
                 blackBoardText.text = response.message;
+                Debug.Log(response.message);
             }
             else
             {
-               
+
                 blackBoardText.text = "Error: " + request.error;
             }
         }
@@ -161,6 +162,5 @@ public class messageRequest
     public string thread_id;
     public string message;
 }
-
 
 
