@@ -3,15 +3,19 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\OculusPart\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|C:\\Users\\user\\Desktop\\OculusPart\\assets\\scripts\\onetoonechat\\chatwithprofessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|C:\\Users\\user\\Desktop\\OculusPart\\assets\\scripts\\audiorecordui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\audiorecordui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|c:\\users\\user\\desktop\\oculuspart\\assets\\scripts\\onetoonechat\\chatwithprofessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\onetoonechat\\chatwithprofessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|c:\\users\\user\\desktop\\oculuspart\\assets\\scripts\\audiomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|C:\\Users\\user\\Desktop\\OculusPart\\assets\\scripts\\audiomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\audiomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|c:\\users\\user\\desktop\\oculuspart\\assets\\scripts\\onetoonechat\\fetchrendertoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|C:\\Users\\user\\Desktop\\OculusPart\\assets\\scripts\\onetoonechat\\fetchrendertoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6CCEBF67-2D0A-F1C9-E679-C79C34AD71CE}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\onetoonechat\\fetchrendertoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -34,24 +38,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AudioManager.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\AudioManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\AudioManager.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\AudioManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\AudioManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAALYAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "AudioRecordUI.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\AudioRecordUI.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\AudioRecordUI.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\AudioRecordUI.cs",
+              "RelativeToolTip": "Assets\\Scripts\\AudioRecordUI.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAEwAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T15:43:24.219Z",
+              "WhenOpened": "2025-03-19T15:46:27.68Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "AudioManager.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\AudioManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\AudioManager.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\AudioManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\AudioManager.cs",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAAwL0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T15:43:24.219Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "fetchRenderToC.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\OneToOneChat\\fetchRenderToC.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\OneToOneChat\\fetchRenderToC.cs",
@@ -59,25 +75,24 @@
               "RelativeToolTip": "Assets\\Scripts\\OneToOneChat\\fetchRenderToC.cs",
               "ViewState": "AgIAAEwAAAAAAAAAAAAuwGUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T12:37:00.674Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T12:37:00.674Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "chatWithProfessor.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\OneToOneChat\\chatWithProfessor.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\OneToOneChat\\chatWithProfessor.cs",
               "ToolTip": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\OneToOneChat\\chatWithProfessor.cs",
               "RelativeToolTip": "Assets\\Scripts\\OneToOneChat\\chatWithProfessor.cs",
-              "ViewState": "AgIAAIwAAAAAAAAAAAAAwKYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAuwKYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-19T12:33:32.449Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "chatWithStudent.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\OneToThree\\chatWithStudent.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\OneToThree\\chatWithStudent.cs",
@@ -89,7 +104,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "fetchRenderToC2.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Assets\\Scripts\\OneToThree\\fetchRenderToC2.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\OneToThree\\fetchRenderToC2.cs",
@@ -101,7 +116,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "OVRRuntimeAssetsBase.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\OculusPart\\Library\\PackageCache\\com.meta.xr.sdk.core\\Scripts\\Util\\OVRRuntimeAssetsBase.cs",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.meta.xr.sdk.core\\Scripts\\Util\\OVRRuntimeAssetsBase.cs",
