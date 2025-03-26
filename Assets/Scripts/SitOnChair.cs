@@ -55,7 +55,7 @@ public class SitOnChair : MonoBehaviour
 
         // 調整碰撞體為坐下狀態
         characterController.height = seatedHeight;
-        characterController.center = new Vector3(0, seatedHeight * 0.5f, 0); // 中心點置中
+        characterController.center = new Vector3(0, seatedHeight * 2.0f, 0); // 中心點置中
 
         // 防止 Step Offset 錯誤
         float maxStep = characterController.height + 2 * characterController.radius;
