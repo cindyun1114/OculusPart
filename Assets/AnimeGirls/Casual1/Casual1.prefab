@@ -384,8 +384,10 @@ Animator:
   m_AnimatePhysics: 0
   m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
     are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'Armature'\n\tTransform 'Armature'\n\tTransform
-    'Armature'\n\tFrom animation clip 'Sit'"
+    by Humanoid clips.\n\tTransform 'Chest'\n\tTransform 'UpperArmL'\n\tTransform
+    'UpperArmR'\n\tTransform 'Chest'\n\tTransform 'Head'\n\tTransform 'LoweArmL'\n\tTransform
+    'Neck'\n\tTransform 'ShoulderR'\n\tTransform 'LoweArmR'\n\tTransform 'Armature'\n\tand
+    more ...\n\tFrom animation clip 'Sit'\n\tFrom animation clip 'FirstStudent'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
