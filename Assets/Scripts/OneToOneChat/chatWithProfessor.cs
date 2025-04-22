@@ -68,7 +68,7 @@ public class chatWithProfessor : MonoBehaviour
         if (voiceDropdown != null)
         {
             voiceDropdown.ClearOptions();
-            voiceDropdown.AddOptions(new List<string> { 
+            voiceDropdown.AddOptions(new List<string> {
                 "Voice 1 (預設)",
                 "Voice 2 (Rachel)",
                 "Voice 3 (Josh)"
@@ -87,7 +87,7 @@ public class chatWithProfessor : MonoBehaviour
             ClassroomProgress = PersistentDataManager.Instance.ClassroomProgress;
             CompletedChapters = PersistentDataManager.Instance.CompletedChapters;
             TotalChapters = PersistentDataManager.Instance.TotalChapters;
-            
+
             StartCoroutine(getChatGPTIDs());
         }
         else
@@ -135,8 +135,8 @@ public class chatWithProfessor : MonoBehaviour
 
         using (UnityWebRequest request = new UnityWebRequest(apiFetchUrl, "POST"))
         {
-            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData); 
-            request.uploadHandler = new UploadHandlerRaw(bodyRaw); 
+            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
 
@@ -153,7 +153,7 @@ public class chatWithProfessor : MonoBehaviour
             }
             else
             {
-               blackBoardText.text = "Error: " + request.error;
+                blackBoardText.text = "Error: " + request.error;
             }
         }
     }
@@ -169,11 +169,11 @@ public class chatWithProfessor : MonoBehaviour
         });
         Debug.Log($"這是使用者的回答:{testInput.text} \n" + embeddedPrompt);
         testInput.text = "";
-        
+
         using (UnityWebRequest request = new UnityWebRequest(apiChatUrl, "POST"))
         {
-            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData); 
-            request.uploadHandler = new UploadHandlerRaw(bodyRaw); 
+            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
 
@@ -196,7 +196,7 @@ public class chatWithProfessor : MonoBehaviour
 
                         // 收到回應後，立即進行文字轉語音
                         StartCoroutine(TextToSpeech(reply.reply));
-                        
+
                         progressUpdate(reply.progress);
                     }
                     else
@@ -280,9 +280,9 @@ public class chatWithProfessor : MonoBehaviour
 
         embeddedPrompt = $"{chapterLength + 1}結束\n" + embeddedPrompt;
 
-        for(; chapterLength > 0 ; chapterLength--)
+        for (; chapterLength > 0; chapterLength--)
         {
-            Debug.Log("A 檔案取得章節名稱：" + chapters[chapterLength - 1].chapter_name +"\n");
+            Debug.Log("A 檔案取得章節名稱：" + chapters[chapterLength - 1].chapter_name + "\n");
             embeddedPrompt = $"{chapterLength}" + chapters[chapterLength - 1].chapter_name + embeddedPrompt;
         }
         Debug.Log(embeddedPrompt);
@@ -303,7 +303,7 @@ public class chatWithProfessor : MonoBehaviour
 
     void setEmbeddPrompt(int length)
     {
-        embeddedPrompt =$@"
+        embeddedPrompt = $@"
         目錄總共有{length}個章節" +
         @"
         這是上傳內容的目錄。
@@ -313,23 +313,23 @@ public class chatWithProfessor : MonoBehaviour
         Json要包含兩個Field 第一個是 progress 用數字標明目前輔導到哪個目錄主題 ， 第二個是reply也就是你的回覆。
         範例Json:
         {
-            “action“: “one_to_one“,
-            “progress“: 2,
-            “reply“: “你的回答可以更精確......“
+            ""action"": ""one_to_one"",
+            ""progress"": 2,
+            ""reply"": ""你的回答可以更精確......""
         }
 
         回覆請用一定要用JSON的格式 不然扁你
         每個reply請不要超出100字。
         請注意使用者的回答，如果回答錯誤就請他修正。 如果回答正確就給予鼓勵並前往下一題。
         目前目錄問題都完成了就進下一個目錄
-        當進行到最後的章節“結束“就請在JSON的 reply 中只回 “GoodJobYouAreGoodToGo“
-        注意是要進行到最後的章節“結束後“才在reply只回  “GoodJobYouAreGoodToGo“ 不要有其他內容 不然扁你
+        當進行到最後的章節""結束""就請在JSON的 reply 中只回 ""GoodJobYouAreGoodToGo""
+        注意是要進行到最後的章節""結束後""才在reply只回  ""GoodJobYouAreGoodToGo"" 不要有其他內容 不然扁你
         ";
     }
 
     void progressUpdate(int progress)
     {
-        if(progress <= childCount)
+        if (progress <= childCount)
         {
             Debug.Log("Change Progress to " + progress);
             GameObject chapterItem = childObjects[progress - 1];
