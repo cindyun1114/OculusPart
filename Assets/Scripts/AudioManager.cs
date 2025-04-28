@@ -2,6 +2,7 @@
 using UnityEngine.Networking;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
@@ -14,8 +15,12 @@ public class AudioManager : MonoBehaviour
     private const int CHANNELS = 1;  // 使用單聲道
     private const int RECORDING_LENGTH = 60;  // 最大錄音長度（秒）
 
-    // 引用chatWithProfessor組件
-    private chatWithProfessor chatManager;
+    // 引用聊天組件
+    private MonoBehaviour chatManager;
+
+    // 添加事件
+    public event Action OnRecordingStarted;
+    public event Action OnRecordingStopped;
 
     void Start()
     {
@@ -33,19 +38,16 @@ public class AudioManager : MonoBehaviour
             Debug.Log($"- {device}");
         }
 
-        // 通過Environment對象獲取chatWithProfessor組件
-        GameObject environment = GameObject.Find("Environment");
-        if (environment != null)
+        // 嘗試獲取聊天組件
+        chatManager = GetComponent<chatWithProfessor>();
+        if (chatManager == null)
         {
-            chatManager = environment.GetComponent<chatWithProfessor>();
-            if (chatManager == null)
-            {
-                Debug.LogError("Environment上找不到chatWithProfessor組件！");
-            }
+            chatManager = GetComponent<chatWithStudent>();
         }
-        else
+
+        if (chatManager == null)
         {
-            Debug.LogError("場景中找不到Environment對象！");
+            Debug.LogError("無法找到聊天組件！請確保 AudioManager 和聊天組件在同一個遊戲物件上。");
         }
     }
 
@@ -74,6 +76,9 @@ public class AudioManager : MonoBehaviour
 
             Debug.Log($"開始錄音... 使用設備: {deviceName}");
             Debug.Log($"音頻設置 - 採樣率: {SAMPLE_RATE}Hz, 聲道數: {CHANNELS}, 最大長度: {RECORDING_LENGTH}秒");
+
+            // 觸發錄音開始事件
+            OnRecordingStarted?.Invoke();
         }
     }
 
@@ -85,6 +90,9 @@ public class AudioManager : MonoBehaviour
             Microphone.End(null);
             isRecording = false;
             Debug.Log("錄音結束");
+
+            // 觸發錄音停止事件
+            OnRecordingStopped?.Invoke();
 
             // 檢查錄音是否成功
             if (recordedClip != null && recordedClip.length > 0)
@@ -128,13 +136,26 @@ public class AudioManager : MonoBehaviour
             if (www.result == UnityWebRequest.Result.Success)
             {
                 TranscriptionResponse response = JsonUtility.FromJson<TranscriptionResponse>(www.downloadHandler.text);
-                Debug.Log($"轉寫文本: {response.text}");
+                string originalText = response.text;
+                Debug.Log($"原始轉寫文本: {originalText}");
 
-                // 使用chatWithProfessor的SendMessage方法發送消息
+                // 處理重複字詞
+                string cleanedText = CleanRepeatedWords(originalText);
+                Debug.Log($"處理後的轉寫文本: {cleanedText}");
+
+                // 使用聊天組件的SendMessage方法發送消息
                 if (chatManager != null)
                 {
-                    chatManager.testInput.text = response.text;
-                    StartCoroutine(chatManager.SendMessage());
+                    if (chatManager is chatWithProfessor professor)
+                    {
+                        professor.testInput.text = cleanedText;
+                        StartCoroutine(professor.SendMessage());
+                    }
+                    else if (chatManager is chatWithStudent student)
+                    {
+                        student.testInput.text = cleanedText;
+                        StartCoroutine(student.SendMessage());
+                    }
                 }
                 else
                 {
@@ -146,6 +167,31 @@ public class AudioManager : MonoBehaviour
                 Debug.LogError($"轉寫錯誤: {www.error}");
             }
         }
+    }
+
+    // 處理重複字詞的方法
+    private string CleanRepeatedWords(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+            return text;
+
+        // 分割文本為單詞
+        string[] words = text.Split(new char[] { ' ', ',', '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
+        List<string> cleanedWords = new List<string>();
+        string lastWord = "";
+
+        foreach (string word in words)
+        {
+            // 如果當前單詞與上一個單詞不同，則添加到結果中
+            if (word != lastWord)
+            {
+                cleanedWords.Add(word);
+                lastWord = word;
+            }
+        }
+
+        // 重新組合文本
+        return string.Join(" ", cleanedWords);
     }
 
     // 將AudioClip轉換為WAV格式的位元組數組

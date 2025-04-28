@@ -4,6 +4,7 @@ using UnityEngine.Networking;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class LoginRequest
@@ -30,6 +31,7 @@ public class CurrentStageResponse
     public float progress;
     public float progress_one_to_one;
     public float progress_classroom;
+    public int teacher_card_id;
 }
 
 public class VRLogin : MonoBehaviour
@@ -152,7 +154,8 @@ public class VRLogin : MonoBehaviour
                     stageData.course_name,
                     stageData.current_stage,
                     stageData.progress_one_to_one,
-                    stageData.progress_classroom
+                    stageData.progress_classroom,
+                    stageData.teacher_card_id
                 );
 
                 if (stageData.progress == 0)

@@ -4,7 +4,7 @@ public class PersistentDataManager : MonoBehaviour
 {
     public static PersistentDataManager Instance;
 
-    // 用戶基本資料
+    // 用戶資料
     public int UserId;
     public string Username;
 
@@ -12,6 +12,7 @@ public class PersistentDataManager : MonoBehaviour
     public int CurrentCourseId;
     public string CurrentCourseName;
     public string CurrentStage;
+    public int TeacherCardId;  // 新增：老師卡片ID
 
     // 進度資料
     public float OneToOneProgress;
@@ -26,7 +27,7 @@ public class PersistentDataManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);  // 跨場景保存
+            DontDestroyOnLoad(gameObject);  // 不銷毀物件
         }
         else
         {
@@ -35,7 +36,7 @@ public class PersistentDataManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 存放登入資訊（從VRLogin來）
+    /// 儲存登入資料（從VRLogin場景）
     /// </summary>
     public void SetUserData(int userId, string username)
     {
@@ -44,14 +45,15 @@ public class PersistentDataManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 存放課程資料（從current_stage來）
+    /// 儲存課程資料（從current_stage場景）
     /// </summary>
-    public void SetCourseData(int courseId, string courseName, string stage, float oneToOneProgress, float classroomProgress)
+    public void SetCourseData(int courseId, string courseName, string stage, float oneToOneProgress, float classroomProgress, int teacherCardId)
     {
         CurrentCourseId = courseId;
         CurrentCourseName = courseName;
         CurrentStage = stage;
         OneToOneProgress = oneToOneProgress;
         ClassroomProgress = classroomProgress;
+        TeacherCardId = teacherCardId;  // 新增：設置老師卡片ID
     }
 }

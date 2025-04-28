@@ -14,10 +14,11 @@ public class chatWithProfessor : MonoBehaviour
     public TMP_InputField testInput;
     public fetchRenderToC fetcher; // 拖進 Inspector 或用 GetComponent 抓
     public AudioSource audioSource;  // 添加AudioSource組件引用
+    public GameObject loadingAnimation; // 添加 Loading 動畫物件引用
+    private AudioManager audioManager;  // 添加 AudioManager 引用
 
     [Header("Voice Settings")]
-    [SerializeField] private string currentVoice = "voice1";  // 當前使用的聲音
-    [SerializeField] private TMP_Dropdown voiceDropdown;      // 聲音選擇下拉選單
+    private string currentVoice;  // 當前使用的聲音
 
     private string apiFetchUrl = "https://feynman-server.onrender.com/fetch";
     private string apiChatUrl = "https://feynman-server.onrender.com/chat";
@@ -51,29 +52,43 @@ public class chatWithProfessor : MonoBehaviour
         // 初始化語音設置
         if (audioSource == null)
         {
-            // 先檢查是否已經有 AudioSource 組件
             audioSource = GetComponent<AudioSource>();
             if (audioSource == null)
             {
-                // 如果沒有，則添加新的組件
                 audioSource = gameObject.AddComponent<AudioSource>();
             }
-            // 設置 AudioSource 屬性
             audioSource.playOnAwake = false;
-            audioSource.spatialBlend = 0f; // 2D 音頻
+            audioSource.spatialBlend = 0f;
             audioSource.volume = 1f;
         }
 
-        // 設置聲音下拉選單
-        if (voiceDropdown != null)
+        // 獲取 AudioManager 並訂閱事件
+        audioManager = GetComponent<AudioManager>();
+        if (audioManager != null)
         {
-            voiceDropdown.ClearOptions();
-            voiceDropdown.AddOptions(new List<string> {
-                "Voice 1 (預設)",
-                "Voice 2 (Rachel)",
-                "Voice 3 (Josh)"
-            });
-            voiceDropdown.onValueChanged.AddListener(OnVoiceChanged);
+            audioManager.OnRecordingStopped += HandleRecordingStopped;
+        }
+        else
+        {
+            Debug.LogError("找不到 AudioManager 組件！");
+        }
+
+        // 確保 loading 動畫一開始是隱藏的
+        if (loadingAnimation != null)
+        {
+            loadingAnimation.SetActive(false);
+        }
+
+        // 獲取當前老師的 voice ID
+        if (TeacherManager.Instance != null)
+        {
+            currentVoice = TeacherManager.Instance.GetCurrentVoiceId();
+            Debug.Log($"使用老師語音ID: {currentVoice}");
+        }
+        else
+        {
+            Debug.LogError("找不到 TeacherManager！");
+            currentVoice = "default";
         }
 
         if (PersistentDataManager.Instance != null)
@@ -94,23 +109,6 @@ public class chatWithProfessor : MonoBehaviour
         {
             Debug.LogError("PersistentDataManager.Instance is null! 確保 PersistentDataManager 存在於場景中。");
         }
-    }
-
-    private void OnVoiceChanged(int index)
-    {
-        switch (index)
-        {
-            case 0:
-                currentVoice = "voice1";
-                break;
-            case 1:
-                currentVoice = "voice2";
-                break;
-            case 2:
-                currentVoice = "voice3";
-                break;
-        }
-        Debug.Log($"切换语音ID为: {currentVoice}");
     }
 
     void Update()
@@ -192,7 +190,8 @@ public class chatWithProfessor : MonoBehaviour
                     if (reply != null)
                     {
                         blackBoardText.text = reply.reply;
-                        Debug.Log("The progress: " + reply.progress);
+                        Debug.Log($"老師回覆內容: {reply.reply}");
+                        Debug.Log($"目前進度: {reply.progress}");
 
                         // 收到回應後，立即進行文字轉語音
                         StartCoroutine(TextToSpeech(reply.reply));
@@ -203,6 +202,11 @@ public class chatWithProfessor : MonoBehaviour
                     {
                         Debug.LogError("無法解析 JSON 回應");
                         blackBoardText.text = "無法解析伺服器回應";
+                        // 發生錯誤時隱藏 loading
+                        if (loadingAnimation != null)
+                        {
+                            loadingAnimation.SetActive(false);
+                        }
                     }
                 }
                 catch (System.Exception e)
@@ -210,11 +214,22 @@ public class chatWithProfessor : MonoBehaviour
                     Debug.LogError($"JSON 解析錯誤: {e.Message}");
                     Debug.LogError($"原始回應: {request.downloadHandler.text}");
                     blackBoardText.text = "解析回應時發生錯誤";
+                    // 發生錯誤時隱藏 loading
+                    if (loadingAnimation != null)
+                    {
+                        loadingAnimation.SetActive(false);
+                    }
                 }
             }
             else
             {
+                Debug.LogError($"請求失敗: {request.error}");
                 blackBoardText.text = "Error: " + request.error;
+                // 發生錯誤時隱藏 loading
+                if (loadingAnimation != null)
+                {
+                    loadingAnimation.SetActive(false);
+                }
             }
         }
     }
@@ -224,6 +239,10 @@ public class chatWithProfessor : MonoBehaviour
         if (audioSource == null)
         {
             Debug.LogError("AudioSource is not assigned!");
+            if (loadingAnimation != null)
+            {
+                loadingAnimation.SetActive(false);
+            }
             yield break;
         }
 
@@ -232,7 +251,7 @@ public class chatWithProfessor : MonoBehaviour
             text = text,
             voice_id = currentVoice
         });
-        Debug.Log($"準備發送請求: {jsonData}");
+        Debug.Log($"準備發送TTS請求: {jsonData}");
 
         UnityWebRequest request = new UnityWebRequest(apiTtsUrl, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
@@ -252,20 +271,40 @@ public class chatWithProfessor : MonoBehaviour
                     Debug.Log($"音頻接收成功，長度: {audioClip.length}秒");
                     audioSource.clip = audioClip;
                     audioSource.Play();
+
+                    // 在成功接收並播放語音後才隱藏 loading
+                    if (loadingAnimation != null)
+                    {
+                        loadingAnimation.SetActive(false);
+                    }
                 }
                 else
                 {
                     Debug.LogError("接收到的音頻為空");
+                    if (loadingAnimation != null)
+                    {
+                        loadingAnimation.SetActive(false);
+                    }
                 }
             }
             else
             {
-                Debug.LogError($"請求失敗: {request.error}");
+                Debug.LogError($"TTS請求失敗: {request.error}");
+                Debug.LogError($"錯誤詳情: {request.downloadHandler.text}");
+                if (loadingAnimation != null)
+                {
+                    loadingAnimation.SetActive(false);
+                }
             }
         }
         catch (System.Exception e)
         {
             Debug.LogError($"TextToSpeech 錯誤: {e.Message}");
+            Debug.LogError($"錯誤堆疊: {e.StackTrace}");
+            if (loadingAnimation != null)
+            {
+                loadingAnimation.SetActive(false);
+            }
         }
         finally
         {
@@ -375,7 +414,41 @@ public class chatWithProfessor : MonoBehaviour
 
     string CleanJsonString(string jsonString)
     {
-        return jsonString.Replace("```json", "").Replace("```", "").Trim();
+        // 如果字符串包含 JSON 代碼塊，提取其中的內容
+        if (jsonString.Contains("```json"))
+        {
+            int startIndex = jsonString.IndexOf("```json") + 7;
+            int endIndex = jsonString.LastIndexOf("```");
+            if (endIndex > startIndex)
+            {
+                jsonString = jsonString.Substring(startIndex, endIndex - startIndex);
+            }
+        }
+
+        // 移除所有換行符和多餘的空格
+        jsonString = jsonString.Replace("\n", "").Replace("\r", "").Trim();
+
+        Debug.Log($"清理後的 JSON: {jsonString}");
+        return jsonString;
+    }
+
+    // 處理錄音停止事件
+    private void HandleRecordingStopped()
+    {
+        Debug.Log("錄音停止，顯示 loading 動畫");
+        if (loadingAnimation != null)
+        {
+            loadingAnimation.SetActive(true);
+        }
+    }
+
+    // 在 OnDestroy 中取消訂閱事件
+    private void OnDestroy()
+    {
+        if (audioManager != null)
+        {
+            audioManager.OnRecordingStopped -= HandleRecordingStopped;
+        }
     }
 }
 

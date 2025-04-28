@@ -10,7 +10,7 @@ public class ExitPanelController : MonoBehaviour
     public Button confirmButton;
     public Button cancelButton;
 
-    private string apiUrl = "https://feyndora-api.onrender.com/update_progress";
+    private string apiUrl = "https://feyndora-api.onrender.com/update_progress";  // 修正API網址
 
     private void Start()
     {
@@ -72,6 +72,7 @@ public class ExitPanelController : MonoBehaviour
         };
 
         string jsonData = JsonUtility.ToJson(progressData);
+        Debug.Log($"準備更新課程進度，同時將 is_vr_ready 設為 0: {jsonData}");
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
 
         using (UnityWebRequest request = new UnityWebRequest(apiUrl, "POST"))
@@ -84,11 +85,11 @@ public class ExitPanelController : MonoBehaviour
 
             if (request.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError($"❌ 更新課程進度失敗: {request.error}");
+                Debug.LogError($"❌ 更新課程進度和 VR 狀態失敗: {request.error}");
             }
             else
             {
-                Debug.Log("✅ 課程進度更新成功");
+                Debug.Log("✅ 課程進度和 VR 狀態更新成功");
             }
         }
 
