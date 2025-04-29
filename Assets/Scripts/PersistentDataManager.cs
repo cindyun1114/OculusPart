@@ -4,21 +4,21 @@ public class PersistentDataManager : MonoBehaviour
 {
     public static PersistentDataManager Instance;
 
-    // ¥Î¤á¸ê®Æ
+    // ï¿½Î¤ï¿½ï¿½ï¿½
     public int UserId;
     public string Username;
 
-    // ½Òµ{¸ê®Æ
+    // ï¿½Òµ{ï¿½ï¿½ï¿½
     public int CurrentCourseId;
     public string CurrentCourseName;
     public string CurrentStage;
-    public int TeacherCardId;  // ·s¼W¡G¦Ñ®v¥d¤ùID
+    public int TeacherCardId;  // ï¿½sï¿½Wï¿½Gï¿½Ñ®vï¿½dï¿½ï¿½ID
 
-    // ¶i«×¸ê®Æ
+    // ï¿½iï¿½×¸ï¿½ï¿½
     public float OneToOneProgress;
     public float ClassroomProgress;
 
-    // ³¹¸`²Î­p
+    // ï¿½ï¿½ï¿½`ï¿½Î­p
     public int CompletedChapters;
     public int TotalChapters;
 
@@ -27,7 +27,7 @@ public class PersistentDataManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);  // ¤£¾P·´ª«¥ó
+            DontDestroyOnLoad(gameObject);  // ï¿½ï¿½ï¿½Pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
         else
         {
@@ -36,7 +36,7 @@ public class PersistentDataManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Àx¦sµn¤J¸ê®Æ¡]±qVRLogin³õ´º¡^
+    /// ï¿½xï¿½sï¿½nï¿½Jï¿½ï¿½Æ¡]ï¿½qVRLoginï¿½ï¿½ï¿½ï¿½ï¿½^
     /// </summary>
     public void SetUserData(int userId, string username)
     {
@@ -45,7 +45,7 @@ public class PersistentDataManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Àx¦s½Òµ{¸ê®Æ¡]±qcurrent_stage³õ´º¡^
+    /// ï¿½xï¿½sï¿½Òµ{ï¿½ï¿½Æ¡]ï¿½qcurrent_stageï¿½ï¿½ï¿½ï¿½ï¿½^
     /// </summary>
     public void SetCourseData(int courseId, string courseName, string stage, float oneToOneProgress, float classroomProgress, int teacherCardId)
     {
@@ -54,6 +54,7 @@ public class PersistentDataManager : MonoBehaviour
         CurrentStage = stage;
         OneToOneProgress = oneToOneProgress;
         ClassroomProgress = classroomProgress;
-        TeacherCardId = teacherCardId;  // ·s¼W¡G³]¸m¦Ñ®v¥d¤ùID
+        TeacherCardId = teacherCardId;  // ï¿½sï¿½Wï¿½Gï¿½]ï¿½mï¿½Ñ®vï¿½dï¿½ï¿½ID
+        Debug.Log($"[PersistentDataManager] è¨­ç½® TeacherCardId: {TeacherCardId}");
     }
 }

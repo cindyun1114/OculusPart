@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using System;
 
 public class TeacherManager : MonoBehaviour
 {
     private const int SANTA_TEACHER_ID = 5;  // 聖誕老公公的ID改為5
 
     public static TeacherManager Instance; // 單例模式
+
+    // 添加事件
+    public event Action OnTeacherChanged;
 
     [System.Serializable]
     public class TeacherModel
@@ -43,8 +47,24 @@ public class TeacherManager : MonoBehaviour
         HideAllTeachers();
 
         // 从 PersistentDataManager 获取当前老师 ID
-        int teacherId = PersistentDataManager.Instance.TeacherCardId;
-        ShowTeacher(teacherId);
+        if (PersistentDataManager.Instance != null)
+        {
+            int teacherId = PersistentDataManager.Instance.TeacherCardId;
+            Debug.Log($"[TeacherManager] 從 PersistentDataManager 獲取到的 teacherId: {teacherId}");
+            
+            // 檢查 teacherId 是否有效
+            if (teacherId <= 0 || teacherId > teacherModels.Length)
+            {
+                Debug.LogError($"[TeacherManager] 無效的 teacherId: {teacherId}，使用默認值 1");
+                teacherId = 1;  // 使用默認值
+            }
+            
+            ShowTeacher(teacherId);
+        }
+        else
+        {
+            Debug.LogError("[TeacherManager] PersistentDataManager.Instance 為 null！");
+        }
     }
 
     private void HideAllTeachers()
@@ -66,7 +86,7 @@ public class TeacherManager : MonoBehaviour
         // 确保 teacherId 在有效范围内
         if (teacherId <= 0 || teacherId > teacherModels.Length)
         {
-            Debug.LogError($"無效的老師ID: {teacherId}");
+            Debug.LogError($"[TeacherManager] 無效的老師ID: {teacherId}");
             return;
         }
 
@@ -79,19 +99,22 @@ public class TeacherManager : MonoBehaviour
         {
             teacher.teacherObject.SetActive(true);
             currentTeacher = teacher.teacherObject;
-            Debug.Log($"顯示老師: {teacher.teacherName}");
+            Debug.Log($"[TeacherManager] 顯示老師: {teacher.teacherName}");
 
             // 如果是聖誕老公公，同時顯示麋鹿
             if (teacherId == SANTA_TEACHER_ID && teacher.companionObject != null)
             {
                 teacher.companionObject.SetActive(true);
                 currentCompanion = teacher.companionObject;
-                Debug.Log("顯示聖誕老公公的麋鹿夥伴");
+                Debug.Log("[TeacherManager] 顯示聖誕老公公的麋鹿夥伴");
             }
+
+            // 觸發老師變更事件
+            OnTeacherChanged?.Invoke();
         }
         else
         {
-            Debug.LogError($"老師 {teacher.teacherName} 的物件未設置！");
+            Debug.LogError($"[TeacherManager] 老師 {teacher.teacherName} 的物件未設置！");
         }
     }
 
@@ -102,7 +125,7 @@ public class TeacherManager : MonoBehaviour
         {
             return currentTeacherModel.voiceId;
         }
-        Debug.LogWarning("當前沒有設置voice ID，使用默認值");
+        Debug.LogWarning("[TeacherManager] 當前沒有設置voice ID，使用默認值");
         return "default";  // 如果沒有設置，返回默認值
     }
 

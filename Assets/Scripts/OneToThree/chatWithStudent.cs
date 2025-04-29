@@ -26,6 +26,8 @@ public class chatWithStudent : MonoBehaviour
     public Slider interactivitySlider;
     public TMP_Text interactivityPercentage;
 
+    public TMP_Text totalGrowth;
+
     public GameObject settlementPanel1;
 
     public TMP_InputField testInput;
@@ -70,7 +72,7 @@ public class chatWithStudent : MonoBehaviour
                                            回覆請用一定要用JSON的格式 不然扁你
                                            請注意使用者的回覆，如果可以理解就請簡單回覆 感謝 或 表示自己理解了，不要再追問
                                            如果使用者對問題沒有做很好的解釋，就再追問。
-                                           注意! 章節進度 Progress得部分是要看使用者講到哪裡來顯示，Progress只增加不減少。
+                                           注意! 章節進度 Progress得部分是要看使用者講到哪裡來顯示，Progress只增加不減少，而且都是一個一個增加。
                                            重要！Progress 必須從 1 開始，不能是 0！
                                            當進行到最後的章節""結束""就請在JSON的 reply 中只回 ""GoodJobYouAreGoodToGo""
                                            注意是要進行到最後的章節""結束後""才在reply只回  ""GoodJobYouAreGoodToGo"" 不要有其他內容 不然扁你";
@@ -409,31 +411,33 @@ public class chatWithStudent : MonoBehaviour
     void progressUpdate(int progress)
     {
         // 檢查 progress 是否在有效範圍內
-        if (progress <= 0 || progress > childCount)
+        if (progress <= 0 || progress > childCount + 1)
         {
             Debug.LogWarning($"Progress 值 {progress} 超出有效範圍 (1-{childCount})");
-            return;
         }
 
-        Debug.Log($"Change Progress to {progress}");
-        GameObject chapterItem = childObjects[progress - 1];
-        Transform imageTransform = chapterItem.transform.Find("Image");
-        if (imageTransform != null)
+        if (progress <= childCount)
         {
-            imageTransform.gameObject.SetActive(true);  // 顯示 Image
+            Debug.Log($"Change Progress to {progress}");
+            GameObject chapterItem = childObjects[progress - 1];
+            Transform imageTransform = chapterItem.transform.Find("Image");
+            if (imageTransform != null)
+            {
+                imageTransform.gameObject.SetActive(true);  // 顯示 Image
+            }
+            else
+            {
+                Debug.LogWarning("找不到 Image 物件！");
+            }
+            StartCoroutine(sendProgressUpdate(CurrentCourseId, "classroom", progress));
         }
-        else
-        {
-            Debug.LogWarning("找不到 Image 物件！");
-        }
-        StartCoroutine(sendProgressUpdate(CurrentCourseId, "classroom", progress));
 
         // 檢查是否達到最後一章
-        if (progress >= childCount)
+        if (progress > childCount)
         {
-            settlementPanel.gameObject.SetActive(true);
             StartCoroutine(Scoring());
             StartCoroutine(MakingComment());
+            settlementPanel.gameObject.SetActive(true);
         }
     }
 
@@ -529,8 +533,23 @@ public class chatWithStudent : MonoBehaviour
 
     string CleanJsonString(string jsonString)
     {
-        // 移除 Markdown 格式的 ```json 和 ```
-        return jsonString.Replace("```json", "").Replace("```", "").Trim();
+        // return jsonString.Replace("```json", "").Replace("```", "").Trim();
+        // 如果字符串包含 JSON 代碼塊，提取其中的內容
+        if (jsonString.Contains("```json"))
+        {
+            int startIndex = jsonString.IndexOf("```json") + 7;
+            int endIndex = jsonString.LastIndexOf("```");
+            if (endIndex > startIndex)
+            {
+                jsonString = jsonString.Substring(startIndex, endIndex - startIndex);
+            }
+        }
+        
+        // 移除所有換行符和多餘的空格
+        jsonString = jsonString.Replace("\n", "").Replace("\r", "").Trim();
+        
+        Debug.Log($"清理後的 JSON: {jsonString}");
+        return jsonString;
     }
 
     IEnumerator Scoring()
@@ -569,14 +588,16 @@ public class chatWithStudent : MonoBehaviour
         Debug.Log(jsonString);
         Scoring scoring = JsonUtility.FromJson<Scoring>(jsonString);
 
-        precisionSlider.value = scoring.precision;
+        precisionSlider.value = scoring.precision/100f;
         precisionPercentage.text = scoring.precision.ToString();
-        expressivenessSlider.value = scoring.expressiveness;
+        expressivenessSlider.value = scoring.expressiveness/100f;
         expressivenessPercentage.text = scoring.expressiveness.ToString();
-        comprehensionSlider.value = scoring.comprehension;
+        comprehensionSlider.value = scoring.comprehension/100f;
         comprehensionPercentage.text = scoring.comprehension.ToString();
-        interactivitySlider.value = scoring.interactivity;
+        interactivitySlider.value = scoring.interactivity/100f;
         interactivityPercentage.text = scoring.interactivity.ToString();
+        totalGrowth.text = ((scoring.precision + scoring.expressiveness + scoring.comprehension + scoring.interactivity)/4).ToString();
+
 
         StartCoroutine(sendScoringUpdate(scoring.precision, scoring.expressiveness, scoring.comprehension, scoring.interactivity));
     }

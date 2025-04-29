@@ -84,6 +84,9 @@ public class chatWithProfessor : MonoBehaviour
         {
             currentVoice = TeacherManager.Instance.GetCurrentVoiceId();
             Debug.Log($"使用老師語音ID: {currentVoice}");
+
+            // 訂閱 TeacherManager 的事件
+            TeacherManager.Instance.OnTeacherChanged += UpdateVoiceId;
         }
         else
         {
@@ -299,7 +302,7 @@ public class chatWithProfessor : MonoBehaviour
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"TextToSpeech 錯誤: {e.Message}");
+            Debug.LogError($"[chatWithProfessor] TextToSpeech 錯誤: {e.Message}");
             Debug.LogError($"錯誤堆疊: {e.StackTrace}");
             if (loadingAnimation != null)
             {
@@ -448,6 +451,21 @@ public class chatWithProfessor : MonoBehaviour
         if (audioManager != null)
         {
             audioManager.OnRecordingStopped -= HandleRecordingStopped;
+        }
+    }
+
+    // 更新 voice ID 的方法
+    private void UpdateVoiceId()
+    {
+        if (TeacherManager.Instance != null)
+        {
+            string newVoiceId = TeacherManager.Instance.GetCurrentVoiceId();
+            currentVoice = newVoiceId;
+            Debug.Log($"[chatWithProfessor] 更新老師語音ID: {currentVoice}");
+        }
+        else
+        {
+            Debug.LogError("[chatWithProfessor] TeacherManager.Instance 為 null");
         }
     }
 }

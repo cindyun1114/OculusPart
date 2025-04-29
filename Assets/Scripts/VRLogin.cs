@@ -146,6 +146,7 @@ public class VRLogin : MonoBehaviour
             }
 
             CurrentStageResponse stageData = JsonUtility.FromJson<CurrentStageResponse>(request.downloadHandler.text);
+            Debug.Log($"從 API 獲取到的 teacher_card_id: {stageData.teacher_card_id}");
 
             if (stageData.hasReadyCourse)
             {
@@ -157,6 +158,7 @@ public class VRLogin : MonoBehaviour
                     stageData.progress_classroom,
                     stageData.teacher_card_id
                 );
+                Debug.Log($"設置到 PersistentDataManager 的 TeacherCardId: {PersistentDataManager.Instance.TeacherCardId}");
 
                 if (stageData.progress == 0)
                 {
