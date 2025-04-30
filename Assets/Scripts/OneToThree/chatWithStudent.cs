@@ -25,6 +25,8 @@ public class chatWithStudent : MonoBehaviour
     public TMP_Text comprehensionPercentage;
     public Slider interactivitySlider;
     public TMP_Text interactivityPercentage;
+    public Slider progressBar;
+    public TMP_Text progressText;
 
     public TMP_Text totalGrowth;
 
@@ -418,6 +420,8 @@ public class chatWithStudent : MonoBehaviour
 
         if (progress <= childCount)
         {
+            progressBar.value = (float)progress/childCount;
+            progressText.text = (100f * progress / childCount).ToString("F1") + "%";
             Debug.Log($"Change Progress to {progress}");
             GameObject chapterItem = childObjects[progress - 1];
             Transform imageTransform = chapterItem.transform.Find("Image");

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 public class chatWithProfessor : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class chatWithProfessor : MonoBehaviour
     public AudioSource audioSource;  // 添加AudioSource組件引用
     public GameObject loadingAnimation; // 添加 Loading 動畫物件引用
     private AudioManager audioManager;  // 添加 AudioManager 引用
+    public Slider progressBar;
+    public TMP_Text progressText;
 
     [Header("Voice Settings")]
     private string currentVoice;  // 當前使用的聲音
@@ -40,6 +43,7 @@ public class chatWithProfessor : MonoBehaviour
 
     public GameObject parentObject;
     private GameObject[] childObjects;  //儲存每個目錄章節
+    
     private int childCount;
 
     void Start()
@@ -184,6 +188,7 @@ public class chatWithProfessor : MonoBehaviour
             {
                 try
                 {
+    
                     var response = JsonUtility.FromJson<messageResponse>(request.downloadHandler.text);
                     string jsonString = CleanJsonString(response.message);
                     Debug.Log($"原始 JSON 字符串: {jsonString}");
@@ -373,6 +378,8 @@ public class chatWithProfessor : MonoBehaviour
     {
         if (progress <= childCount)
         {
+            progressBar.value = (float)progress/childCount;
+            progressText.text = (100f * progress / childCount).ToString("F1") + "%";
             Debug.Log("Change Progress to " + progress);
             GameObject chapterItem = childObjects[progress - 1];
 
@@ -430,6 +437,9 @@ public class chatWithProfessor : MonoBehaviour
 
         // 移除所有換行符和多餘的空格
         jsonString = jsonString.Replace("\n", "").Replace("\r", "").Trim();
+
+        // 解除跳脫字元（讓 \n, \uXXXX 變成真正的換行或中文）
+        jsonString = Regex.Unescape(jsonString);
 
         Debug.Log($"清理後的 JSON: {jsonString}");
         return jsonString;
