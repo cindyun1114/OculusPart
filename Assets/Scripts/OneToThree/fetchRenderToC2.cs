@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine.Networking;
 using System;
+using UnityEngine.UI;
 
 public class fetchRenderToC2 : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class fetchRenderToC2 : MonoBehaviour
   public GameObject chapterPrefab;
 
   public Action<Chapter[]> OnChaptersFetched;
+  public Slider progressBar;
+  public TMP_Text progressText;
 
   // Start is called once before the first execution of Update after the MonoBehaviour is created
   void Start()
@@ -62,6 +65,7 @@ public class fetchRenderToC2 : MonoBehaviour
 
   void DisplayChapters(Chapter[] chapters)
   {
+    int currentProgressBar = 0;
     if (chapterPrefab == null)
     {
       Debug.LogError("Error: chapterPrefab is null!");
@@ -76,17 +80,19 @@ public class fetchRenderToC2 : MonoBehaviour
 
     foreach (Chapter chapter in chapters)
     {
-      GameObject newChapter = Instantiate(chapterPrefab, chapterListContainer);
-
-      TMP_Text textComponent = newChapter.GetComponentInChildren<TMP_Text>();
-      if (textComponent == null)
+      if (chapter.is_completed == 1)
       {
-        Debug.LogError("Error: TMP_Text component is missing on prefab!");
-        return;
+        currentProgressBar++;
       }
-
-      textComponent.text = chapter.chapter_name;
+      GameObject newChapter = Instantiate(chapterPrefab, chapterListContainer);
+      ChapterTitlePrefabScript component = newChapter.GetComponent<ChapterTitlePrefabScript>();
+      component.SetData(chapter.chapter_name, chapter.is_completed);
+      TMP_Text textComponent = newChapter.GetComponentInChildren<TMP_Text>();
     }
+
+    progressBar.value = (float)currentProgressBar / chapters.Length;
+    progressText.text = (100f * currentProgressBar / chapters.Length).ToString("F1") + "%";
+
   }
 }
 

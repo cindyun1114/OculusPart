@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 441461298613135570}
   - component: {fileID: 2031956341962534185}
   - component: {fileID: 8968801514433712017}
+  - component: {fileID: 237470531061740266}
   m_Layer: 5
   m_Name: ChapterTitleYellow
   m_TagString: Untagged
@@ -152,6 +153,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &237470531061740266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4480506264841722786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64c74fa55c9f624685856ed9d03113b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleText: {fileID: 7439305067481446407}
+  checkImage: {fileID: 4309992077250003454}
 --- !u!1 &7195584296121749180
 GameObject:
   m_ObjectHideFlags: 0
