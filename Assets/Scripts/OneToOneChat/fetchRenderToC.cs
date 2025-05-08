@@ -18,6 +18,8 @@ public class fetchRenderToC : MonoBehaviour
     public Slider progressBar;
     public TMP_Text progressText;
 
+    public bool isDataReady = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -92,6 +94,8 @@ public class fetchRenderToC : MonoBehaviour
 
         progressBar.value = (float)currentProgressBar / chapters.Length;
         progressText.text = (100f * currentProgressBar / chapters.Length).ToString("F1") + "%";
+
+        isDataReady = true;
     }
 }
 

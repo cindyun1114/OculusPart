@@ -86,9 +86,16 @@ public class chatWithStudent : MonoBehaviour
     private int childCount;
     private string[] explanationPoints; // 用於存放解說點的陣列
 
+    public GameObject StupidPanel;
+    private fetchRenderToC2 fetchRenderToC2;
+    public bool isDataReady = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        fetchRenderToC2 = GetComponent<fetchRenderToC2>();
+        StupidPanel.SetActive(true);
+
         // 初始化音頻相關組件
         if (audioSource == null)
         {
@@ -226,6 +233,21 @@ public class chatWithStudent : MonoBehaviour
 
         // 在完成載入後，啟動生成解說點的協程
         StartCoroutine(GenerateExplanationPoints());
+        
+        
+        StartCoroutine(CheckBothReady());
+    }
+
+    IEnumerator CheckBothReady()
+    {
+        while (!isDataReady || !fetchRenderToC2.isDataReady)
+        {
+            yield return null; // 等待下一幀
+        }
+
+        Debug.Log("兩邊資料都抓好了，關閉仔入畫面");
+
+        StupidPanel.SetActive(false);
     }
 
     public IEnumerator SendMessage()
@@ -513,7 +535,7 @@ public class chatWithStudent : MonoBehaviour
                 GeneratePointsResponse tipsResponse = JsonUtility.FromJson<GeneratePointsResponse>(jsonString);
                 explanationPoints = tipsResponse.tips; // 假設 API 回傳一個包含解說點的陣列
                 Debug.Log("解說點生成成功");
-
+                isDataReady = true;
                 CycleThroughExplanationPoints(currentProgress);
 
             }

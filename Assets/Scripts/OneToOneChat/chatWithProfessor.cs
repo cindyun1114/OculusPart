@@ -45,9 +45,16 @@ public class chatWithProfessor : MonoBehaviour
     private GameObject[] childObjects;  //儲存每個目錄章節
     
     private int childCount;
+    
+    public GameObject StupidPanel;
+    private fetchRenderToC fetchRenderToC;
+    public bool isDataReady = false;
 
     void Start()
     {
+        fetchRenderToC = GetComponent<fetchRenderToC>();
+        StupidPanel.SetActive(true);
+
         if (fetcher != null)
         {
             fetcher.OnChaptersFetched += HandleChaptersFetched;
@@ -161,6 +168,22 @@ public class chatWithProfessor : MonoBehaviour
                 blackBoardText.text = "Error: " + request.error;
             }
         }
+
+        isDataReady = true;
+
+        StartCoroutine(CheckBothReady());
+    }
+
+    IEnumerator CheckBothReady()
+    {
+        while (!isDataReady || !fetchRenderToC.isDataReady)
+        {
+            yield return null; // 等待下一幀
+        }
+
+        Debug.Log("兩邊資料都抓好了，關閉仔入畫面");
+
+        StupidPanel.SetActive(false);
     }
 
     public IEnumerator SendMessage()
