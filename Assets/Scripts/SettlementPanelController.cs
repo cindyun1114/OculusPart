@@ -1,38 +1,34 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
 using System.Text;
 
-public class ExitPanelController : MonoBehaviour
+public class SettlementPanelController : MonoBehaviour
 {
-    public GameObject exitPanel;  // UI上的ExitPanel物件
-    public Button confirmButton;
-    public Button cancelButton;
+    public GameObject settlementPanel;  // UI上的SettlementPanel物件
+    public Button finishButton;
 
-    private string apiUrl = "https://feyndora-api.onrender.com/update_progress";  // 修正API網址
-    private string getProgressUrl = "https://feyndora-api.onrender.com/get_latest_progress/";
+    private string apiUrl = "https://feyndora-api.onrender.com/update_progress";
 
     private void Start()
     {
-        exitPanel.SetActive(false);  // 一開始先隱藏
-
-        confirmButton.onClick.AddListener(OnConfirmExit);
-        cancelButton.onClick.AddListener(() => exitPanel.SetActive(false));  // 取消就關掉面板
+        settlementPanel.SetActive(false);  // 一開始先隱藏
+        finishButton.onClick.AddListener(OnFinish);
     }
 
     /// <summary>
-    /// 顯示離開確認面板
+    /// 顯示結算面板
     /// </summary>
-    public void ShowExitPanel()
+    public void ShowSettlementPanel()
     {
-        exitPanel.SetActive(true);
+        settlementPanel.SetActive(true);
     }
 
     /// <summary>
-    /// 確認離開並更新進度
+    /// 確定離開並更新進度
     /// </summary>
-    void OnConfirmExit()
+    void OnFinish()
     {
         StartCoroutine(FetchLatestProgressAndUpdate());
     }
@@ -93,20 +89,6 @@ public class ExitPanelController : MonoBehaviour
     }
 
     /// <summary>
-    /// 舊的進度計算保留但不再用（你可以刪掉）
-    /// </summary>
-    [System.Obsolete]
-    float CalculateCurrentStageProgress()
-    {
-        int completedChapters = PersistentDataManager.Instance.CompletedChapters;
-        int totalChapters = PersistentDataManager.Instance.TotalChapters;
-
-        if (totalChapters <= 0) return 0f;
-        float progress = (completedChapters / (float)totalChapters) * 100f;
-        return Mathf.Min(progress, 99.9f);
-    }
-
-    /// <summary>
     /// 上傳進度用的資料結構
     /// </summary>
     [System.Serializable]
@@ -132,4 +114,4 @@ public class ExitPanelController : MonoBehaviour
         public float progress_classroom;
         public int teacher_card_id;
     }
-}
+} 
