@@ -76,8 +76,8 @@ public class chatWithStudent : MonoBehaviour
                                            如果使用者對問題沒有做很好的解釋，就再追問。
                                            注意! 章節進度 Progress得部分是要看使用者講到哪裡來顯示，Progress只增加不減少，而且都是一個一個增加。
                                            重要！Progress 必須從 1 開始，不能是 0！
-                                           當進行到最後的章節""結束""就請在JSON的 reply 中只回 ""GoodJobYouAreGoodToGo""
-                                           注意是要進行到最後的章節""結束後""才在reply只回  ""GoodJobYouAreGoodToGo"" 不要有其他內容 不然扁你";
+                                           當進行到最後的章節""結束""就請在JSON的 reply 中只回 ""太好了，課程結束!內容我們都了解了，老師你真棒!""
+                                           注意是要進行到最後的章節""結束後""才在reply只回  ""太好了，課程結束!內容我們都了解了，老師你真棒!"" 不要有其他內容 不然扁你";
     private string teacherEmbeddedPrompt = "";
     private string chapterNames;
     private int currentProgress = 0;

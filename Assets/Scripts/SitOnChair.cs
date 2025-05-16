@@ -16,9 +16,9 @@ public class SitOnChair : MonoBehaviour
 
     [Header("進階設定")]
     [Tooltip("起身時往前移動的距離")]
-    public float standForwardOffset = 0.3f;
+    public float standForwardOffset = 0.25f;
     [Tooltip("坐下時的碰撞體高度")]
-    public float seatedHeight = 1.0f;
+    public float seatedHeight = 0.0f;
 
     private CharacterController characterController;
     private bool isSeated = false;
