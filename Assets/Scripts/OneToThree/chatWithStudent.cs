@@ -711,31 +711,31 @@ public class chatWithStudent : MonoBehaviour
 
         Debug.Log("Updating Comment to DB...");
 
-        string jsonData = $@"
-    {{
-      ""action"": ""update_score"",
-      ""course_id"": {CurrentCourseId},
-      ""user_id"": {UserId},
-      ""teacher_comment"": ""{teacher_comment}"",
-      ""student1_feedback"": ""{student1_feedback}"",
-      ""student2_feedback"": ""{student2_feedback}"",
-      ""student3_feedback"": ""{student3_feedback}"",
-      ""good_points"": [{string.Join(",", good_points.Select(s => $"\"{s}\""))}],
-      ""improvement_points"": [{string.Join(",", improvement_points.Select(s => $"\"{s}\""))}]
-    }}";
-        // string jsonData = JsonUtility.ToJson(new updateCommentInDB
-        // {
-        //   action = "update_score",
-        //   course_id = CurrentCourseId,
-        //   user_id = UserId,
-        //   teacher_comment = teacher_comment,
-        //   student1_feedback = student1_feedback,
-        //   student2_feedback = student2_feedback,
-        //   student3_feedback = student3_feedback,
-        //   good_points = good_points,
-        //   improvement_points = improvement_points
+        // string jsonData = $@"
+        // {{
+        //     ""action"": ""update_score"",
+        //     ""course_id"": {CurrentCourseId},
+        //     ""user_id"": {UserId},
+        //     ""teacher_comment"": ""{teacher_comment}"",
+        //     ""student1_feedback"": ""{student1_feedback}"",
+        //     ""student2_feedback"": ""{student2_feedback}"",
+        //     ""student3_feedback"": ""{student3_feedback}"",
+        //     ""good_points"": [{string.Join(",", good_points.Select(s => $"\"{s}\""))}],
+        //     ""improvement_points"": [{string.Join(",", improvement_points.Select(s => $"\"{s}\""))}]
+        // }}";
+        string jsonData = JsonUtility.ToJson(new updateCommentInDB
+        {
+          action = "update_score",
+          course_id = CurrentCourseId,
+          user_id = UserId,
+          teacher_comment = teacher_comment,
+          student1_feedback = student1_feedback,
+          student2_feedback = student2_feedback,
+          student3_feedback = student3_feedback,
+          good_points = good_points,
+          improvement_points = improvement_points
 
-        // });
+        });
 
         UnityWebRequest request = new UnityWebRequest(apiUpdateScoreUrl, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
