@@ -377,7 +377,7 @@ public class chatWithProfessor : MonoBehaviour
         目錄總共有{length}個章節" +
         @"
         這是上傳內容的目錄。
-        請完全遵守Instruction進行 Phrase2，依序每個目錄要問兩個問題。
+        請完全遵守Instruction進行 Phrase2，依序每個目錄最多問兩個問題。
 
         回覆請用一定要用JSON的格式 不然扁你
         Json要包含兩個Field 第一個是 progress 用數字標明目前輔導到哪個目錄主題 ， 第二個是reply也就是你的回覆。

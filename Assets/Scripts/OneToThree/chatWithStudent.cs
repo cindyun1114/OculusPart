@@ -72,7 +72,7 @@ public class chatWithStudent : MonoBehaviour
                                              ""reply"": ""老師，在AI訓練裡什麼是過度擬合......""
                                            }
                                            回覆請用一定要用JSON的格式 不然扁你
-                                           請注意使用者的回覆，如果可以理解就請簡單回覆 感謝 或 表示自己理解了，不要再追問
+                                           請注意使用者的回覆，如果可以理解就請簡單回覆 感謝 或 表示自己理解了，不要再追問，每個章節最多問兩個問題。
                                            如果使用者對問題沒有做很好的解釋，就再追問。
                                            注意! 章節進度 Progress得部分是要看使用者講到哪裡來顯示，Progress只增加不減少，而且都是一個一個增加。
                                            重要！Progress 必須從 1 開始，不能是 0！
@@ -681,6 +681,7 @@ public class chatWithStudent : MonoBehaviour
                                         '建議增加互動練習時間',
                                         '可以多舉一些生活化的例子']
                     }
+                    注意 good_points 和 improvemnet_points 是陣列!!
                     請只用JSON回覆! 請只用JSON回覆! 不要有任何其他文字!! 不然揍你!",
             assistant_id = studentAssistant_id,
             thread_id = studentThread_id
@@ -737,7 +738,7 @@ public class chatWithStudent : MonoBehaviour
 
         });
 
-        UnityWebRequest request = new UnityWebRequest(apiUpdateScoreUrl, "POST");
+        UnityWebRequest request = new UnityWebRequest(apiUpdateCommentUrl, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
