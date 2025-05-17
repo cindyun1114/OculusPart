@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class buttonManager : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class buttonManager : MonoBehaviour
     {
         Debug.Log("Deactivate VR for course: " + PersistentDataManager.Instance.UserId);
         StartCoroutine(MarkCoureseVRZero(PersistentDataManager.Instance.CurrentCourseId, PersistentDataManager.Instance.UserId));
+        SceneManager.LoadScene("LoginScene");
     }
 
     IEnumerator MarkCoureseVRZero(int courseId, int userId)
