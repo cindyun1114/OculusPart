@@ -9,11 +9,11 @@ public class SettlementPanelController : MonoBehaviour
     public GameObject settlementPanel;  // UI上的SettlementPanel物件
     public Button finishButton;
 
-    private string apiUrl = "https://feyndora-api.onrender.com/update_progress";
+    private string finishCourseUrl = "https://feyndora-api.onrender.com/finish_course";
+    private string updateProgressUrl = "https://feyndora-api.onrender.com/update_progress";
 
     private void Start()
     {
-        settlementPanel.SetActive(false);  // 一開始先隱藏
         finishButton.onClick.AddListener(OnFinish);
     }
 
@@ -30,15 +30,47 @@ public class SettlementPanelController : MonoBehaviour
     /// </summary>
     void OnFinish()
     {
-        StartCoroutine(FetchLatestProgressAndUpdate());
+        StartCoroutine(FinishCourseAndUpdate());
     }
 
-    IEnumerator FetchLatestProgressAndUpdate()
+    IEnumerator FinishCourseAndUpdate()
     {
         int userId = PersistentDataManager.Instance.UserId;
         int courseId = PersistentDataManager.Instance.CurrentCourseId;
         
-        // 使用 current_stage API 取得最新進度
+        // 先呼叫 finish_course API 強制完成所有章節
+        var finishData = new FinishCourseData
+        {
+            course_id = courseId
+        };
+
+        string jsonData = JsonUtility.ToJson(finishData);
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+
+        using (UnityWebRequest finishRequest = new UnityWebRequest(finishCourseUrl, "POST"))
+        {
+            finishRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            finishRequest.downloadHandler = new DownloadHandlerBuffer();
+            finishRequest.SetRequestHeader("Content-Type", "application/json");
+
+            yield return finishRequest.SendWebRequest();
+
+            if (finishRequest.result != UnityWebRequest.Result.Success)
+            {
+                string errorResponse = finishRequest.downloadHandler.text;
+                Debug.LogError($"❌ 強制完成章節失敗: {finishRequest.error}");
+                Debug.LogError($"發送的資料: {jsonData}");
+                Debug.LogError($"伺服器回應: {errorResponse}");
+                yield break;
+            }
+            else
+            {
+                string response = finishRequest.downloadHandler.text;
+                Debug.Log($"✅ 章節強制完成成功，伺服器回應: {response}");
+            }
+        }
+
+        // 然後更新課程進度
         using (UnityWebRequest request = UnityWebRequest.Get($"https://feyndora-api.onrender.com/current_stage/{userId}"))
         {
             yield return request.SendWebRequest();
@@ -50,21 +82,20 @@ public class SettlementPanelController : MonoBehaviour
 
                 if (stageData.hasReadyCourse)
                 {
-                    // 直接使用計算好的進度來更新
                     var updateData = new ProgressUpdateData
                     {
                         course_id = courseId,
-                        progress = stageData.progress,
-                        progress_one_to_one = stageData.progress_one_to_one,
-                        progress_classroom = stageData.progress_classroom,
-                        current_stage = stageData.current_stage,
+                        progress = 100f,  // 強制設為 100%
+                        progress_one_to_one = 100f,  // 強制設為 100%
+                        progress_classroom = 100f,  // 強制設為 100%
+                        current_stage = "completed",  // 強制設為 completed
                         is_vr_ready = 0  // 離開時設為 0
                     };
 
-                    string jsonData = JsonUtility.ToJson(updateData);
-                    byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+                    jsonData = JsonUtility.ToJson(updateData);
+                    bodyRaw = Encoding.UTF8.GetBytes(jsonData);
 
-                    using (UnityWebRequest updateRequest = new UnityWebRequest(apiUrl, "POST"))
+                    using (UnityWebRequest updateRequest = new UnityWebRequest(updateProgressUrl, "POST"))
                     {
                         updateRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
                         updateRequest.downloadHandler = new DownloadHandlerBuffer();
@@ -80,6 +111,7 @@ public class SettlementPanelController : MonoBehaviour
                         {
                             Debug.Log("✅ 課程進度和 VR 狀態更新成功");
                         }
+
                     }
                 }
             }
@@ -100,6 +132,12 @@ public class SettlementPanelController : MonoBehaviour
         public float progress_classroom;
         public string current_stage;
         public int is_vr_ready;
+    }
+
+    [System.Serializable]
+    class FinishCourseData
+    {
+        public int course_id;
     }
 
     [System.Serializable]

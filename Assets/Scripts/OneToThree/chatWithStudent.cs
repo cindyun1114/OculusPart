@@ -64,7 +64,7 @@ public class chatWithStudent : MonoBehaviour
     string teacherThread_id = "";
 
     private string studentEmbeddedPrompt = @"請完全遵守Instruction進行，不然砍你! 請依據使用者的講解，以學生的角度去問問題。
-                                           並依據使用者講解的內容去判斷他講道哪個章節了。  然後請用JSON的格式回傳給我，這很重要，遵守不然拔你電源
+                                           並依據使用者講解的內容去判斷他講道哪個章節了，章節一律從1開始!!。  然後請用JSON的格式回傳給我，這很重要，遵守不然拔你電源
                                            JSON範例:
                                            {
                                              ""action"": ""one_to_three"",
@@ -72,7 +72,7 @@ public class chatWithStudent : MonoBehaviour
                                              ""reply"": ""老師，在AI訓練裡什麼是過度擬合......""
                                            }
                                            回覆請用一定要用JSON的格式 不然扁你
-                                           請注意使用者的回覆，如果可以理解就請簡單回覆 感謝 或 表示自己理解了，不要再追問，每個章節最多問兩個問題。
+                                           請注意使用者的回覆，如果可以理解就請簡單回覆 感謝 或 表示自己理解了，不要再追問，每個章節最多問兩個問題!!。
                                            如果使用者對問題沒有做很好的解釋，就再追問。
                                            注意! 章節進度 Progress得部分是要看使用者講到哪裡來顯示，Progress只增加不減少，而且都是一個一個增加。
                                            重要！Progress 必須從 1 開始，不能是 0！
